@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "allowJs": false,
+    "target": "es2020",
+    "sourceMap": true,
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+  },
+  "include": [
+    "./src/**/*",
+  ],
+  "exclude": [
+    "node_modules",
+    "webpack.*.js"
+  ]
+}
