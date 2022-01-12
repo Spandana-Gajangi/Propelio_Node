@@ -10,7 +10,8 @@ class CountySuggestionController {
         const callerMethodName = 'getCounties';
         try {
             const q: string = <string>req.query.q;
-            const params = q.split(',');
+            let params = q.split(',');
+            params = params.map((e) => e.trim());
             const result = await countySuggestionService.getCounties(params);
             const payload = response(200, result)
             return h.response(payload);

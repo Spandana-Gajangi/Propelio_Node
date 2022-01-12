@@ -1,3 +1,4 @@
+import { ILike } from 'typeorm';
 import { countySuggestionRepository } from '../repositories';
 import { logService } from '../config/logging/logger.service';
 
@@ -13,10 +14,10 @@ class CountySuggestionService {
         const [param1, param2] = params;
         logService.debug('Get details from db', callerMethodName, __filename, { params });
         if (params.length === 1) {
-            result = await countySuggestionRepository.get([{ name: param1 }, { state: param1 }]);
+            result = await countySuggestionRepository.get([{ name: ILike(`%${param1}%`) }, { state: ILike(`%${param1}%`) }]);
         }
         else {
-            result = await countySuggestionRepository.get([{ name: param1, state: param2 }, { name: param2, state: param1 }]);
+            result = await countySuggestionRepository.get([{ name: ILike(`%${param1}%`), state: ILike(`%${param2}%`) }, { name: ILike(`%${param2}%`), state: ILike(`%${param1}%`) }]);
         }
         logService.debug('Got details from db', callerMethodName, __filename, { params, result });
         if (result) {
